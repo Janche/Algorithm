@@ -13,12 +13,15 @@ public class 约瑟夫环问题 {
 
     public static void main(String[] args) {
         getPosition();
+
+        int position2 = getPosition2(30, 9);
+        System.out.println(position2);
     }
 
     private static void getPosition() {
         boolean[] persons = new boolean[30];
         int count = 0, number = 0;
-        while (count < 15){
+        while (count < 30){
             for (int i = 0; i < persons.length; i++) {
                 if (!persons[i]) {
                     number++;
@@ -27,6 +30,7 @@ public class 约瑟夫环问题 {
                     count += 1;
                     number = 0;
                     persons[i] = true;
+                    System.out.println(i);
                 }
 
             }
@@ -39,6 +43,16 @@ public class 约瑟夫环问题 {
             }
         }
     }
-
+    /**
+     * 利用数学公式进行计算
+     * f(N,M)=(f(N?1,M)+M)%N
+     */
+    private static int getPosition2(int n, int m) {
+        int p = 0;
+        for (int i = 2; i <= n; i++) {
+            p = (p + m) % i;
+        }
+        return p;
+    }
 
 }
