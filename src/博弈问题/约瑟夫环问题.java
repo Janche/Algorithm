@@ -1,0 +1,58 @@
+package 博弈问题;
+
+/**
+ * @author lirong
+ * @ClassName: 约瑟夫环问题
+ * @Desc: 《幸运的基督徒》
+ * 有15个基督徒和15个非基督徒在海上遇险，为了能让一部分人活下来不得不将其中15个人扔到海里面去，
+ * 有个人想了个办法就是大家围成一个圈，由某个人开始从1报数，报到9的人就扔到海里面，
+ * 他后面的人接着从1开始报数，报到9的人继续扔到海里面，直到扔掉15个人。
+ * 由于上帝的保佑，15个基督徒都幸免于难，问这些人最开始是怎么站的，哪些位置是基督徒哪些位置是非基督徒。
+ */
+public class 约瑟夫环问题 {
+
+    public static void main(String[] args) {
+        getPosition();
+
+        int position2 = getPosition2(30, 9);
+        System.out.println(position2);
+    }
+
+    private static void getPosition() {
+        boolean[] persons = new boolean[30];
+        int count = 0, number = 0;
+        while (count < 30){
+            for (int i = 0; i < persons.length; i++) {
+                if (!persons[i]) {
+                    number++;
+                }
+                if (number == 9) {
+                    count += 1;
+                    number = 0;
+                    persons[i] = true;
+                    System.out.println(i);
+                }
+
+            }
+        }
+        for (int i=0; i<persons.length; i++){
+            if (persons[i]){
+                System.out.print(", 非:"+i);
+            }else {
+                System.out.print(", 基:"+i);
+            }
+        }
+    }
+    /**
+     * 利用数学公式进行计算
+     * f(N,M)=(f(N?1,M)+M)%N
+     */
+    private static int getPosition2(int n, int m) {
+        int p = 0;
+        for (int i = 2; i <= n; i++) {
+            p = (p + m) % i;
+        }
+        return p;
+    }
+
+}
