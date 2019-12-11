@@ -12,18 +12,21 @@ import java.util.Map;
 public class _003LengthOfLongestSubstring {
 
     public static void main(String[] args) {
-        String str = "abcdabcbbabccde";
-
-        int start = 0;
-        int end = 0;
-        Map<Character, Integer> map = new HashMap<>();
-        for (int i = 0; i < str.length(); i++) {
-            char c = str.charAt(i);
-            map.put(c, end-start);
+        String s = "pwwkew";
+        int max = 0;
+        String str = "";
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (str.contains(c + "")){
+                str = str.substring(str.indexOf(c)+1) + c;
+            }else {
+                str += c + "";
+            }
+            if (max <= str.length()){
+                max = str.length();
+            }
         }
 
-
-
-        // System.out.println(ans);
+        System.out.println(max);
     }
 }

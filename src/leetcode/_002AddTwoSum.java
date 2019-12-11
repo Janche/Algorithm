@@ -31,24 +31,27 @@ public class _002AddTwoSum {
     }
 
     private static ListNode dfs2Node(ListNode node, ListNode node3) {
-        ListNode dummyHead = new ListNode(0);
-        ListNode p = node, q = node3, curr = dummyHead;
-        int carry = 0;
+        ListNode p = node;
+        ListNode q = node3;
+        // 此处rootNode是为了标记表头，curr节点是从表头出发，循环体执行后，curr节点已经执行链表末尾了。
+        ListNode rootNode = new ListNode(0);
+        ListNode curr = rootNode;
+        int temp = 0;
         while (p != null || q != null) {
-            int x = (p != null) ? p.val : 0;
-            int y = (q != null) ? q.val : 0;
-            int sum = carry + x + y;
-            carry = sum / 10;
-            curr.next = new ListNode(sum % 10);
+            int x = p != null ? p.val : 0;
+            int y = q != null ? q.val : 0;
+            int val = temp +  x + y;
+            temp = val / 10;
+            curr.next = new ListNode(val % 10);
             curr = curr.next;
-            if (p != null) p = p.next;
-            if (q != null) q = q.next;
-        }
-        if (carry > 0) {
-            curr.next = new ListNode(carry);
-        }
-        return dummyHead.next;
 
+            p = p != null ? p.next : null;
+            q = q != null ? q.next : null;
+        }
+        if (temp > 0){
+            curr.next = new ListNode(temp);
+        }
+        return rootNode.next;
     }
 
     private static void printNode(ListNode dfsNode) {
