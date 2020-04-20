@@ -1,5 +1,7 @@
 package leetcode;
 
+import sun.reflect.generics.tree.Tree;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,31 +27,36 @@ public class _105BuildTwoTree {
     static int[] preorder = {3,9,20,15,7};
     static int[] inorder = {9,3,15,20,7};
     static int idx = 0;
+
     public static void main(String[] args) {
-        int[] preorder = {3,9,20,15,7};
-        int[] inorder = {9,3,15,20,7};
-        // dfs(preorder, inorder);
-        TreeNode treeNode = buildTree(preorder, inorder);
-        System.out.println(treeNode);
-    }
-
-    private static TreeNode dfs(int left_index, int right_index) {
-        if (left_index == right_index){
-            return null;
-        }
-        int val = preorder[idx++];
-        int middle = map.get(val);
-        TreeNode root = new TreeNode(val);
-        root.left = dfs(left_index, middle);
-        root.right = dfs(middle+1, right_index);
-        return root;
-    }
-
-    public static TreeNode buildTree(int[] preorder, int[] inorder) {
         for (int i = 0; i < inorder.length; i++) {
             map.put(inorder[i], i);
         }
-        return dfs(0, inorder.length);
+        TreeNode node = dfs(0, inorder.length-1);
+        traverse(node);
+    }
+
+    private static TreeNode dfs(int left, int right) {
+        if (left == right){
+            return null;
+        }
+        if (idx == preorder.length){
+            return null;
+        }
+        int val = preorder[idx++];
+        TreeNode node = new TreeNode(val);
+        Integer middle = map.get(val);
+        node.left = dfs(left, middle);
+        node.right = dfs(middle+1, right);
+        return node;
+    }
+
+    private static void traverse(TreeNode node) {
+        if (null != node){
+            System.out.print(node.val + " ");
+            traverse(node.left);
+            traverse(node.right);
+        }
     }
 }
 
