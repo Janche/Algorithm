@@ -1,7 +1,5 @@
 package leetcode;
 
-import sun.reflect.generics.tree.Tree;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,8 +30,22 @@ public class _105BuildTwoTree {
         for (int i = 0; i < inorder.length; i++) {
             map.put(inorder[i], i);
         }
-        TreeNode node = dfs(0, inorder.length-1);
-        traverse(node);
+        // TreeNode node = dfs(0, inorder.length);
+        // traverse(node);
+        TreeNode node2 = buildTreeHelper(preorder, 0, preorder.length, inorder, 0, inorder.length, map);
+        traverse(node2);
+    }
+
+    public static TreeNode buildTreeHelper(int[] preorder, int p_start, int p_end, int[] inorder, int i_start, int i_end, Map<Integer, Integer> map) {
+        if (p_start == p_end){
+            return null;
+        }
+        TreeNode root = new TreeNode(preorder[p_start]);
+        Integer i_root_index = map.get(root.val);
+        int leftNum = i_root_index - i_start;
+        root.left = buildTreeHelper(preorder, p_start+1, p_start+leftNum+1, inorder, i_start, i_root_index, map);
+        root.right = buildTreeHelper(preorder, p_start+leftNum+1, p_end, inorder, i_root_index+1, i_end, map);
+        return root;
     }
 
     private static TreeNode dfs(int left, int right) {
