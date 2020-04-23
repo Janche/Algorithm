@@ -1,6 +1,4 @@
-package leetcode;
-
-import java.util.concurrent.CopyOnWriteArrayList;
+package leetcode.¶þ²æÊ÷;
 
 /**
  * @author lirong
