@@ -1,4 +1,4 @@
-package leetcode.¶þ²æÊ÷;
+package leetcode.binarytree;
 
 /**
  * @author lirong
