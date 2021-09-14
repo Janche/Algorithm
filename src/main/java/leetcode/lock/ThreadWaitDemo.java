@@ -1,4 +1,4 @@
-package leetcode.lock;
+package main.java.leetcode.lock;
 
 public class ThreadWaitDemo {
     private static Object myLock1 = new Object();
