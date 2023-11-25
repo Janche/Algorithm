@@ -17,15 +17,6 @@ package leetcode.binarytree;
  * Êä³ö: 6
  * @date 2020/04/11 23:51
  */
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-
-    TreeNode(int x) {
-        val = x;
-    }
-}
 
 public class _124TwoTreeMaxLength {
     public static void main(String[] args) {
