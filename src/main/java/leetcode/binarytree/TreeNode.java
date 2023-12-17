@@ -17,4 +17,9 @@ public class TreeNode {
         this.left = left;
         this.right = right;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return ((TreeNode) obj).val == this.val;
+    }
 }
