@@ -44,12 +44,15 @@ public class _494DpTargetSum {
             return 0;
         }
 
+        // 填满j（包括j）这么大容积的包，有dp[j]种方法
         int[] dp = new int[left + 1];
         dp[0] = 1;
         for (int i = 0; i < nums.length; i++) {
             for (int j = left; j >= nums[i]; j--) {
                 dp[j] += dp[j - nums[i]];
+                System.out.println("i:" + i + " + j:" + j + " = " + dp[j]);
             }
+            System.out.println("=========");
         }
         return dp[left];
     }

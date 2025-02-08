@@ -22,6 +22,7 @@ public class _279DpNumSquares {
             dp[i] = Integer.MAX_VALUE;
         }
 
+        // 当和为0时，组合的个数为0
         dp[0] = 0;
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j * j <= i; j++) {

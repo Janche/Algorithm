@@ -38,6 +38,7 @@ public class _474DpOneAndZero {
     public static int findMaxForm(String[] strs, int m, int n) {
         // dp[i][j] 表示 i 个 0 和 j 个 1 的最大子集的长度
         int[][] dp = new int[m + 1][n + 1];
+        // 字符串相当于是物品，0 的个数和 1 的个数相当于是 背包的容量 ，因此这是一个典型的01背包，先遍历物品，后遍历容量，容量倒序遍历
         for (String str: strs) {
             int[] nums = getNumsByStr(str);
             int zeros = nums[0], ones = nums[1];

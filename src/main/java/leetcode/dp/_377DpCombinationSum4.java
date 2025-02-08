@@ -39,7 +39,7 @@ public class _377DpCombinationSum4 {
         /**
          * 当 1≤i≤target 时，如果存在一种排列，其中的元素之和等于 i，则该排列的最后一个元素一定是数组 nums 中的一个元素。
          * 假设该排列的最后一个元素是 num，则一定有 num≤i，对于元素之和等于 i?num 的每一种排列，
-         * 在最后添加 num 之后即可得到一个元素之和等于 i 的排列，因此在计算 dp[i] 时，应该计算所有的 dp[i?num] 之和。
+         * 在最后添加 num 之后即可得到一个元素之和等于 i 的排列，因此在计算 dp[i] 时，应该计算所有的 dp[i - num] 之和(num是数组nums数组中的不同元素)。
          *
          */
         // dp[i] 表示总和为 i 的组合数
@@ -49,8 +49,10 @@ public class _377DpCombinationSum4 {
             for (int num : nums) {
                 if (i >= num) {
                     dp[i] += dp[i - num];
+                    System.out.print(dp[i] + " ");
                 }
             }
+            System.out.println();
         }
 
         return dp[target];
